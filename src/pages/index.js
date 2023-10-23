@@ -1,7 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
+import { Axios } from "axios";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
+
+import Axios from "axios";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,9 @@ export default function Home() {
       todo: todo,
     };
     console.log(todoObj);
+    Axios.post("/api/newTodo", todoObj).then(() => {
+      alert("Todo Added ");
+    });
   };
   return (
     <>
@@ -22,7 +26,7 @@ export default function Home() {
         <h1>Create Todo</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label for="title" className="form-label">
+            <label htmlFor="title" className="form-label">
               Title :
             </label>
             <input
@@ -34,7 +38,7 @@ export default function Home() {
             />
           </div>
           <div className="mb-3">
-            <label for="todo" className="form-label">
+            <label htmlFor="todo" className="form-label">
               Todo :
             </label>
             <input
